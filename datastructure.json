@@ -1,0 +1,17 @@
+[
+  {
+    "filaname": "xpto",
+    "commits": ["123123", "234234"], //Ultimo commit o mais recente
+    "staged": true,
+    "unstaged": true
+  }
+],
+
+[
+  {
+    "commitId": "123123",
+    "message": "Xpto ai sim"
+  }
+]
+
+// Commit similado remote, adicionar em todos os arquivos o novo commit
