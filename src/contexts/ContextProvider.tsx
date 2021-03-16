@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 import { v4 as uuid4 } from 'uuid';
 import produce from 'immer';
 
+
 export type FileCommit = {
   id: string
   filename: string
@@ -24,7 +25,9 @@ type ContextParams = {
   updateCommitsInFile: (commitId: string) => void
 }
 
+
 export const Context = createContext({} as ContextParams);
+
 
 export const ContextProvider: React.FC = ({ children }) => {
   const [files, setFiles] = useState<FileCommit[]>([])

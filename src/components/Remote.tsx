@@ -5,6 +5,7 @@ import { Container, Footer, Header } from "../styles/components/Container.styles
 import { BodyPanelList, HeaderPanel, Panel } from "../styles/components/Panel.styles"
 import { CommitItem } from "./CommitItem"
 
+
 export const Remote: React.FC = () => {
   const { commits, createSimulatedCommit, doFetch } = useContext(CommitContext);
 

@@ -1,13 +1,21 @@
-import React, { useMemo } from "react"
-import { Commit } from "../contexts/CommitContextProvider"
+import React, { useContext, useMemo } from "react"
+import { Commit, CommitContext } from "../contexts/CommitContextProvider"
 import { Container } from "../styles/components/CommitItem.styles"
+
 
 type FileItemParams= {
   commit: Commit;
   repository: 'LOCAL' | 'REMOTE'
 }
 
+
 export const CommitItem: React.FC<FileItemParams> = ({ commit, repository}) => {
+
+  const { setSelectedCommit } = useContext(CommitContext);
+
+  function handleSelect() {
+    setSelectedCommit(commit.id);
+  }
 
   const isLocalRepository = useMemo(() => {
     return repository === 'LOCAL'
@@ -27,6 +35,8 @@ export const CommitItem: React.FC<FileItemParams> = ({ commit, repository}) => {
     <Container 
       isCenter={!isLocalRepository} 
       status={getRemotecommitStatus}
+      selected={commit.selected && isLocalRepository}
+      onClick={handleSelect}
     >
       <span>{commit.id}</span>
       {isLocalRepository ?  <p>{commit.message}</p> : null}

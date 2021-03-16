@@ -16,6 +16,7 @@ export type Commit = {
 
 type CommitContextParams = {
   commits: Commit[]
+  setSelectedCommit: (commitId: string) => void
   createCommit: (message: string) => void
   createCommitAmend: () => void
   createSimulatedCommit: () => void
@@ -25,7 +26,6 @@ type CommitContextParams = {
   doPull: () => void
 }
 
-export const CommitContext = createContext({} as CommitContextParams);
 
 function sortRule(commitA: Commit, commitB: Commit) {
     if (commitA.order < commitB.order) {
@@ -41,11 +41,31 @@ function makeCommitId(): string {
   return uuid4().slice(0, 5)
 }
 
+
+export const CommitContext = createContext({} as CommitContextParams);
+
+
 export const CommitContextProvider: React.FC = ({ children }) => {
   const { updateCommitsInFile } = useContext(Context);
 
   const [commits, setCommits] = useState<Commit[]>([])
   const [order, setOrder] = useState<number>(0);
+
+  function setSelectedCommit(commitId: string): void {
+    const updatedCommits = commits.map(commit => {
+      const newCommit = { ...commit };
+
+      newCommit.selected = false;
+
+      if (newCommit.id === commitId) {
+        newCommit.selected = !commit.selected;
+      }
+
+      return newCommit;
+    });
+
+    setCommits(updatedCommits);
+  }
 
   function createCommit(message: string): void {
     const commitId = makeCommitId();
@@ -115,8 +135,6 @@ export const CommitContextProvider: React.FC = ({ children }) => {
 
     setCommits(updatedCommits);
   }
-
-
 
   function doPush(): void {
     const updatedCommits = produce(commits, draft => {
@@ -188,6 +206,7 @@ export const CommitContextProvider: React.FC = ({ children }) => {
   return ( 
     <CommitContext.Provider value={{
       commits,
+      setSelectedCommit,
       createCommit,
       createCommitAmend,
       createSimulatedCommit,

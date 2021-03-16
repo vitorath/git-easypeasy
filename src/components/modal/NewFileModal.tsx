@@ -1,11 +1,14 @@
 import React from "react"
-import { Button } from "../styles/components/Button.styles";
-import { Form } from "../styles/components/NewFileModal.styles";
-import { Modal, ModalRefType } from "./Modal"
+import { Modal, ModalRefType } from "./Modal";
+import { Button } from "../../styles/components/Button.styles";
+import { Form } from "../../styles/components/modal/NewFileModal.styles";
+
 
 type NewFileModalParams= {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
+
+
 // TODO : Finish design
 export const NewFileModal = React.forwardRef<ModalRefType, NewFileModalParams>((props, ref) => {
 return (

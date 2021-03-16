@@ -1,7 +1,8 @@
 import React, { ReactNode, useCallback, useImperativeHandle, useState } from "react"
 import { MdClose } from 'react-icons/md';
 
-import { CloseButton, Container } from "../styles/components/Modal.styles";
+import { CloseButton, Container } from "../../styles/components/modal/Modal.styles";
+
 
 type ModalProps = {
   children: ReactNode
@@ -11,6 +12,7 @@ export type ModalRefType = {
   openModal: () => void
   closeModal: () => void
 }
+
 
 export const Modal = React.forwardRef<ModalRefType, ModalProps>(({ children }, ref) => {
   const [isVisible, setIsVisible] = useState(false);

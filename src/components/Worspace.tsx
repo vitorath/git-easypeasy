@@ -3,14 +3,15 @@ import React, { useCallback, useContext, useMemo, useRef } from "react"
 import { Context } from "../contexts/ContextProvider"
 
 import { FileItem } from "./FileItem"
+import { CommitModal } from "./modal/CommitModal"
+import { NewFileModal } from "./modal/NewFileModal"
+import { CommitContext } from "../contexts/CommitContextProvider"
+
+import { ModalRefType } from "./modal/Modal"
 
 import { Button, ButtonGroup } from "../styles/components/Button.styles"
 import { Container, Footer, Header } from "../styles/components/Container.styles"
 import { BodyPanelList, FooterPanel, HeaderPanel, Panel, PanelGroup } from "../styles/components/Panel.styles"
-import { ModalRefType } from "./Modal"
-import { NewFileModal } from "./NewFileModal"
-import { CommitContext } from "../contexts/CommitContextProvider"
-import { CommitModal } from "./CommitModal"
 
 
 export const Workspace: React.FC = () => {

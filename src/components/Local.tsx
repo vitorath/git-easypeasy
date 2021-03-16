@@ -5,6 +5,7 @@ import { Container, Header } from "../styles/components/Container.styles"
 import { BodyPanelList, HeaderPanel, Panel } from "../styles/components/Panel.styles"
 import { CommitItem } from "./CommitItem"
 
+
 export const Local: React.FC = () => {
   const { commits, doPush, doForcePush, doPull } = useContext(CommitContext);
 
@@ -22,7 +23,7 @@ export const Local: React.FC = () => {
   }
 
   const isCommitsSelected = useMemo(() => {
-    return commits.filter(commit => commit.selected).length > 0;
+    return commits.filter(commit => commit.selected && commit.isLocal).length > 0;
   }, [commits])
 
   return (
@@ -44,8 +45,8 @@ export const Local: React.FC = () => {
           <HeaderPanel justifyContent="center">
             {isCommitsSelected ? (
               <ButtonGroup>
-                <Button size="small"  background="#3AA752">Revert</Button>
-                <Button size="small"  background="#1F7EA7">Reset</Button>
+                <Button size="small"  background="#BB1E1E">Revert</Button>
+                <Button size="small"  background="#F1A6A6" color="#4b0000">Reset</Button>
               </ButtonGroup>
             ) : (
               <ButtonGroup>

@@ -2,10 +2,12 @@ import React, { useContext, useMemo } from "react"
 import { Context, FileCommit } from "../contexts/ContextProvider"
 import { Container, Status } from "../styles/components/FileItem.styles"
 
+
 type FileItemParams= {
   file: FileCommit;
   type: 'STAGED' | 'UNSTAGED'
 }
+
 
 function getStatus(file: FileCommit, type: 'STAGED' | 'UNSTAGED') {
   if (type === 'UNSTAGED' && file.unstaged && file.staged && file.commits.length === 0) {
@@ -64,6 +66,7 @@ function getStatus(file: FileCommit, type: 'STAGED' | 'UNSTAGED') {
     }
   }
 }
+
 
 export const FileItem: React.FC<FileItemParams> = ({ file, type }) => {
 
