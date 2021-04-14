@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react"
+import React, { useContext } from "react"
 import { CommitContext } from "../contexts/CommitContextProvider"
 import { Button, ButtonGroup } from "../styles/components/Button.styles"
 import { Container, Header } from "../styles/components/Container.styles"
@@ -22,9 +22,9 @@ export const Local: React.FC = () => {
     return commits.filter(commit => commit.isLocal).length === 0;
   }
 
-  const isCommitsSelected = useMemo(() => {
-    return commits.filter(commit => commit.selected && commit.isLocal).length > 0;
-  }, [commits])
+  // const isCommitsSelected = useMemo(() => {
+  //   return commits.filter(commit => commit.selected && commit.isLocal).length > 0;
+  // }, [commits])
 
   return (
     <Container wrap={3}>
@@ -43,12 +43,12 @@ export const Local: React.FC = () => {
         </Header>
         <Panel background="#DEDEDE">
           <HeaderPanel justifyContent="center">
-            {isCommitsSelected ? (
+            {/* {isCommitsSelected ? (
               <ButtonGroup>
                 <Button size="small"  background="#BB1E1E">Revert</Button>
                 <Button size="small"  background="#F1A6A6" color="#4b0000">Reset</Button>
               </ButtonGroup>
-            ) : (
+            ) : ( */}
               <ButtonGroup>
                 <Button 
                   type="button"
@@ -69,7 +69,7 @@ export const Local: React.FC = () => {
                   Push
                 </Button>
               </ButtonGroup>
-            )}
+            {/* )} */}
           </HeaderPanel>
           <BodyPanelList direction="column-reverse">
             {commits.filter(commit => commit.isLocal)
